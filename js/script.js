@@ -197,3 +197,21 @@ function classificarRisco(score) {
     mensagem: 'Risco alto. Recomenda-se ação imediata no manejo da plantação.'
   };
 }
+
+function atualizarIndicadoresHero(ndvi, umidade, risco) {
+  const statNdvi = $('#statNdvi');
+  const statUmi = $('#statUmi');
+  const statRisco = $('#statRisco');
+
+  if (statNdvi) {
+    statNdvi.textContent = Number(ndvi).toFixed(2);
+  }
+
+  if (statUmi) {
+    statUmi.textContent = `${Math.round(umidade)}%`;
+  }
+
+  if (statRisco) {
+    statRisco.textContent = risco;
+  }
+}
