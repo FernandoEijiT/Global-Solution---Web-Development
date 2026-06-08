@@ -161,3 +161,39 @@ function configurarSlideshow() {
   renderizarSlide();
   reiniciarTemporizador();
 }
+
+function calcularRiscoAgricola(temperatura, umidadeSolo, ndvi) {
+  const estresseTermico = limitarValor((temperatura - 20) * 3, 0, 100);
+  const estresseHidrico = limitarValor(100 - umidadeSolo, 0, 100);
+  const estresseVegetacao = limitarValor((1 - ndvi) * 100, 0, 100);
+  const score = estresseTermico * 0.30 + estresseHidrico * 0.40 + estresseVegetacao * 0.30;
+
+  return {
+    score: limitarValor(score, 0, 100),
+    estresseTermico,
+    estresseHidrico,
+    estresseVegetacao
+  };
+}
+
+function classificarRisco(score) {
+  if (score < 35) {
+    return {
+      classe: 'Saudável',
+      css: 'saudavel',
+      mensagem: 'A lavoura está em condição estável. Continue monitorando.'
+    };
+  } else if (score < 70) {
+    return {
+      classe: 'Atenção',
+      css: 'atencao',
+      mensagem: 'A lavoura apresenta sinais de estresse. Verifique irrigação e temperatura.'
+    };
+  }
+
+  return {
+    classe: 'Crítico',
+    css: 'critico',
+    mensagem: 'Risco alto. Recomenda-se ação imediata no manejo da plantação.'
+  };
+}
