@@ -215,3 +215,57 @@ function atualizarIndicadoresHero(ndvi, umidade, risco) {
     statRisco.textContent = risco;
   }
 }
+
+function configurarSimulador() {
+  const formulario = $('#simForm');
+
+  if (!formulario) {
+    return;
+  }
+
+  formulario.addEventListener('submit', (evento) => {
+    evento.preventDefault();
+
+    const campoTemperatura = $('#inpTemp');
+    const campoUmidade = $('#inpUmi');
+    const campoNdvi = $('#inpNdvi');
+    const erro = $('#formError');
+
+    if (campoTemperatura.value === '' || campoUmidade.value === '' || campoNdvi.value === '') {
+      erro.textContent = 'Preencha todos os campos do simulador.';
+      return;
+    }
+
+    const temperatura = Number(campoTemperatura.value);
+    const umidade = Number(campoUmidade.value);
+    const ndvi = Number(campoNdvi.value);
+
+    if (temperatura < 0 || temperatura > 50) {
+      erro.textContent = 'Temperatura inválida. Use valores entre 0 e 50 °C.';
+      return;
+    } else if (umidade < 0 || umidade > 100) {
+      erro.textContent = 'Umidade inválida. Use valores entre 0 e 100%.';
+      return;
+    } else if (ndvi < 0 || ndvi > 1) {
+      erro.textContent = 'NDVI inválido. Use valores entre 0 e 1.';
+      return;
+    }
+
+    erro.textContent = '';
+
+    const resultado = calcularRiscoAgricola(temperatura, umidade, ndvi);
+    const classificacao = classificarRisco(resultado.score);
+
+    $('#resScore').textContent = formatarPontuacao(resultado.score);
+    $('#resTemp').textContent = `${formatarPontuacao(resultado.estresseTermico)}%`;
+    $('#resUmi').textContent = `${formatarPontuacao(resultado.estresseHidrico)}%`;
+    $('#resVeg').textContent = `${formatarPontuacao(resultado.estresseVegetacao)}%`;
+
+    const saidaClasse = $('#resClass');
+    saidaClasse.classList.remove('saudavel', 'atencao', 'critico');
+    saidaClasse.classList.add(classificacao.css);
+    saidaClasse.textContent = `${classificacao.classe} — ${classificacao.mensagem}`;
+
+    atualizarIndicadoresHero(ndvi, umidade, classificacao.classe);
+  });
+}
