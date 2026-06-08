@@ -402,4 +402,60 @@ function configurarQuiz() {
     mensagemFinal.textContent = nivel;
     resultado.hidden = false;
   }
+
+    botoesOpcoes.forEach((botao) => {
+    botao.addEventListener('click', () => {
+      opcaoSelecionada = Number(botao.dataset.option);
+      limparSelecao();
+      botao.classList.add('selected');
+    });
+  });
+
+  botaoResposta.addEventListener('click', () => {
+    if (opcaoSelecionada === null) {
+      definirFeedback(feedback, 'Selecione uma alternativa antes de responder.', 'erro');
+      return;
+    }
+
+    if (opcaoSelecionada === perguntas[perguntaAtual].resposta) {
+      pontuacao += 1;
+      definirFeedback(feedback, 'Resposta correta.', 'ok');
+    } else {
+      definirFeedback(feedback, 'Resposta incorreta.', 'erro');
+    }
+
+    setTimeout(() => {
+      perguntaAtual += 1;
+
+      if (perguntaAtual < perguntas.length) {
+        renderizarPergunta();
+      } else {
+        finalizarQuiz();
+      }
+    }, 650);
+  });
+
+  botaoReiniciar.addEventListener('click', () => {
+    perguntaAtual = 0;
+    pontuacao = 0;
+    renderizarPergunta();
+  });
+
+  renderizarPergunta();
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  atualizarAnoRodape();
+  configurarNavegacao();
+  configurarTemas();
+  configurarSlideshow();
+  configurarSimulador();
+  configurarCadastroTalhao();
+  configurarQuiz();
+
+  const formulario = $('#simForm');
+
+  if (formulario) {
+    formulario.dispatchEvent(new Event('submit'));
+  }
+});
