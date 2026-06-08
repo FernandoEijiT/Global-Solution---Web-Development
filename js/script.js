@@ -75,3 +75,44 @@ function configurarTemas() {
     });
   });
 }
+function configurarSlideshow() {
+  const imagem = $('#slideImage');
+  const titulo = $('#slideTitle');
+  const texto = $('#slideText');
+  const botaoProximo = $('#nextSlide');
+  const botaoAnterior = $('#prevSlide');
+  const dots = $$('.slide-dot');
+
+  if (!imagem || !titulo || !texto || !botaoProximo || !botaoAnterior || dots.length === 0) {
+    return;
+  }
+
+  const slides = [
+    {
+      imagem: 'imagens/agricultor.jpg',
+      titulo: 'Produtor rural conectado',
+      texto: 'O sistema transforma dados técnicos em decisões simples para o campo.',
+      alt: 'Agricultor usando tecnologia no campo'
+    },
+    {
+      imagem: 'imagens/satelite.jpg',
+      titulo: 'Observação da Terra por satélite',
+      texto: 'O conceito orbital apoia o monitoramento de vegetação, solo e clima.',
+      alt: 'Satélite monitorando a Terra'
+    },
+    {
+      imagem: 'imagens/sensores.jpg',
+      titulo: 'Sensores IoT no solo',
+      texto: 'Arduino e sensores simulam a coleta local de umidade, temperatura e luminosidade.',
+      alt: 'Sensores conectados a uma placa Arduino'
+    }
+  ];
+
+  let indiceAtual = 0;
+  let temporizador = null;
+
+  function atualizarDots() {
+    dots.forEach((dot, indice) => {
+      dot.classList.toggle('active', indice === indiceAtual);
+    });
+  }
