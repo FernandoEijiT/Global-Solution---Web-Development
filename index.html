@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AgroOrbit IA - plataforma agrícola inteligente que une IoT, modelagem matemática e sensoriamento remoto para democratizar a agricultura de precisão." />
+  <title>AgroOrbit IA - Agricultura Inteligente Orbital</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="#inicio" class="brand" aria-label="AgroOrbit IA - Início">
+        <span class="brand-mark" aria-hidden="true">◐</span>
+        <span>AgroOrbit <strong>IA</strong></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="main-nav" id="mainNav" aria-label="Navegação principal">
+        <ul>
+          <li><a href="#problema">Problema</a></li>
+          <li><a href="#tecnologia">Tecnologia</a></li>
+          <li><a href="#objetivos">Objetivos</a></li>
+          <li><a href="#publico-alvo">Público-Alvo</a></li>
+          <li><a href="#beneficios">Benefícios</a></li>
+          <li><a href="#aplicacao">Aplicação no dia a dia</a></li>
+          <li><a href="#galeria">Slideshow</a></li>
+          <li><a href="#backlog">Backlog</a></li>
+          <li><a href="#quiz">Quiz</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="inicio" class="hero" aria-label="Apresentação">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="container hero-inner">
+        <p class="eyebrow">Global Solution 2026 · ODS 2 · ODS 9 · ODS 10 · ODS 13</p>
+        <h1>Agricultura de precisão <span class="accent">acessível</span>, do solo à órbita.</h1>
+        <p class="lead">AgroOrbit IA é um ecossistema que une sensores IoT, modelagem matemática e os fundamentos do sensoriamento remoto orbital para transformar dados brutos do campo em ações preditivas para o pequeno e médio produtor rural.</p>
+        <div class="hero-actions">
+          <a href="#problema" class="btn btn-primary">Conhecer o projeto</a>
+          <a href="#aplicacao" class="btn btn-ghost">Ver demonstração</a>
+        </div>
+        <div class="theme-controls" id="themeControls" aria-label="Opções de tema da página">
+          <button type="button" class="theme-btn active" data-theme="theme-orbital">Tema Orbital</button>
+          <button type="button" class="theme-btn" data-theme="theme-eco">Tema Eco</button>
+          <button type="button" class="theme-btn" data-theme="theme-solar">Tema Solar</button>
+        </div>
+        <dl class="hero-stats">
+          <div><dt>NDVI</dt><dd id="statNdvi">0.66</dd></div>
+          <div><dt>Umidade</dt><dd id="statUmi">48%</dd></div>
+          <div><dt>Risco</dt><dd id="statRisco">Atenção</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section id="problema" class="section">
+      <div class="container two-col">
+        <div>
+          <p class="eyebrow">Seção 1 · Problema</p>
+          <h2>Decisões agrícolas sem dados confiáveis</h2>
+          <p>Pequenos e médios produtores rurais permanecem à margem da revolução da agricultura de precisão devido ao alto custo das soluções corporativas. Sem métricas precisas, decidem por estimativas empíricas, gerando ciclos de irrigação incorretos, desperdício hídrico, degradação do solo e perdas de safra.</p>
+          <ul class="check-list check-list-spaced">
+            <li><strong>Desperdício Hídrico:</strong> uso predatório da água potável.</li>
+            <li><strong>Degradação do Solo:</strong> manejo cego da umidade.</li>
+            <li><strong>Insegurança Estratégica:</strong> alta imprevisibilidade sazonal.</li>
+            <li><strong>Prejuízo Financeiro:</strong> custos elevados ao pequeno produtor.</li>
+            <li><strong>Barreira Tecnológica:</strong> isolamento digital de regiões afastadas.</li>
+          </ul>
+        </div>
+        <figure>
+          <img src="imagens/agricultor.jpg" alt="Agricultor analisando a lavoura com tablet ao pôr do sol" />
+        </figure>
+      </div>
+    </section>
+
+    <section id="tecnologia" class="section section-alt">
+      <div class="container two-col reverse">
+        <figure>
+          <img src="imagens/satelite.jpg" alt="Satélite observando campos agrícolas a partir da órbita terrestre" />
+        </figure>
+        <div>
+          <p class="eyebrow">Seção 2 · Tecnologia</p>
+          <h2>Arquitetura robusta, escalável e portátil</h2>
+          <ul class="check-list">
+            <li><strong>Hardware &amp; IoT:</strong> Arduino Uno, sensor de umidade de solo, DHT11 (temperatura/umidade do ar) e LDR para luminosidade.</li>
+            <li><strong>Software:</strong> backend em Python para regras de negócio + interface em HTML5, CSS3 e JavaScript puro.</li>
+            <li><strong>Simulação &amp; Ciência:</strong> emulação eletromecânica via Wokwi e modelagem matemática do comportamento do solo.</li>
+            <li><strong>Diferencial:</strong> arquitetura aberta, baixíssimo custo e manutenção simplificada.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="objetivos" class="section">
+      <div class="container">
+        <p class="eyebrow">Seção 3 · Objetivos</p>
+        <h2>AgroOrbit IA: a ponte entre o campo e a órbita</h2>
+        <p class="section-lead">Solução integrada que unifica hardware analítico, modelagem matemática e os fundamentos do sensoriamento remoto orbital — atuando como uma ponte de Total Experience (TX) que transforma dados brutos em ações preditivas.</p>
+        <ul class="tech-grid">
+          <li><span class="tech-ico">📡</span><h3>Coleta Ativa (IoT)</h3><p>Sensores microcontrolados medem umidade do solo, variações térmicas e luminosidade em tempo real.</p></li>
+          <li><span class="tech-ico">📊</span><h3>Dashboard Centralizado</h3><p>Interface web intuitiva, projetada para a experiência do trabalhador rural (UX simplificada).</p></li>
+          <li><span class="tech-ico">🚨</span><h3>Inteligência Preditiva</h3><p>Alertas automáticos em cenários de risco como seca severa ou saturação hídrica.</p></li>
+          <li><span class="tech-ico">🛰️</span><h3>Alinhamento Orbital</h3><p>Integração lógica com parâmetros de sensoriamento remoto via satélite para validar a inteligência local.</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="publico-alvo" class="section section-alt">
+      <div class="container">
+        <p class="eyebrow">Seção 4 · Público-Alvo</p>
+        <h2>Para quem construímos</h2>
+        <div class="audience-grid">
+          <article><h3>Para</h3><p>Agricultores e produtores rurais que não possuem acesso à agricultura de precisão.</p></article>
+          <article><h3>O que é</h3><p>O AgroOrbit IA é uma plataforma agrícola inteligente que monitora lavouras com sensores e dados inspirados em monitoramento orbital.</p></article>
+          <article><h3>Diferente de</h3><p>Sistemas agrícolas caros e complexos, nosso produto oferece monitoramento acessível, alertas automáticos e análise agrícola em tempo real.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="beneficios" class="section">
+      <div class="container">
+        <p class="eyebrow">Seção 5 · Benefícios</p>
+        <h2>Impacto alinhado à Agenda 2030</h2>
+        <div class="benefits-grid">
+          <div class="benefit"><strong>−40%</strong><p>Desperdício de água com turnos de rega otimizados matematicamente.</p></div>
+          <div class="benefit"><strong>+25%</strong><p>Produtividade estimada com diagnóstico precoce de risco.</p></div>
+          <div class="benefit"><strong>24/7</strong><p>Monitoramento contínuo de solo, clima e vegetação.</p></div>
+          <div class="benefit"><strong>ODS 2</strong><p>Fome Zero: democratiza a agricultura de precisão e a segurança alimentar.</p></div>
+          <div class="benefit"><strong>ODS 9</strong><p>Indústria, Inovação e Infraestrutura: IoT de baixo custo no campo.</p></div>
+          <div class="benefit"><strong>ODS 10</strong><p>Redução das Desigualdades: amplia o acesso à agricultura de precisão para produtores de diferentes portes, reduzindo desigualdades tecnológicas no campo.</p></div>
+          <div class="benefit"><strong>ODS 13</strong><p>Ação Climática: uso eficiente da água e prevenção a anomalias térmicas.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="aplicacao" class="section section-alt">
+      <div class="container">
+        <p class="eyebrow">Seção 6 · Aplicação no dia a dia</p>
+        <h2>Simulador de risco agrícola</h2>
+        <p class="section-lead">Insira valores aproximados e veja o diagnóstico calculado a partir das funções matemáticas do projeto.</p>
+
+        <div class="app-grid">
+          <form class="sim-form" id="simForm" novalidate>
+            <label>Temperatura (°C)
+              <input type="number" id="inpTemp" min="0" max="50" step="0.1" value="32" required />
+            </label>
+            <label>Umidade do solo (%)
+              <input type="number" id="inpUmi" min="0" max="100" step="1" value="35" required />
+            </label>
+            <label>NDVI orbital (0 a 1)
+              <input type="number" id="inpNdvi" min="0" max="1" step="0.01" value="0.55" required />
+            </label>
+            <button type="submit" class="btn btn-primary">Calcular risco</button>
+            <p class="form-error" id="formError" role="alert"></p>
+          </form>
+
+          <div class="sim-result" id="simResult" aria-live="polite">
+            <p class="result-label">Risco calculado</p>
+            <p class="result-value"><span id="resScore">—</span><small>/100</small></p>
+            <p class="result-class" id="resClass">Aguardando dados…</p>
+            <ul class="result-detail">
+              <li>Estresse térmico: <span id="resTemp">—</span></li>
+              <li>Estresse hídrico: <span id="resUmi">—</span></li>
+              <li>Estresse vegetação: <span id="resVeg">—</span></li>
+            </ul>
+          </div>
+        </div>
+
+
+        <div class="webdev-panel" id="cadastroTalhao">
+          <p class="eyebrow">Web Development · Validação</p>
+          <h2>Cadastro rápido de talhão monitorado</h2>
+          <p class="section-lead">Preencha todos os campos para simular o cadastro de uma área agrícola monitorada pelo sistema.</p>
+
+          <form class="cadastro-form" id="formTalhao" novalidate>
+            <label>Nome do talhão
+              <input type="text" id="nomeTalhao" placeholder="Ex: Talhão Norte" />
+            </label>
+            <label>Cultura agrícola
+              <input type="text" id="culturaTalhao" placeholder="Ex: Soja, milho, tomate" />
+            </label>
+            <label>Nível de prioridade
+              <select id="prioridadeTalhao">
+                <option value="">Selecione...</option>
+                <option value="Baixa">Baixa</option>
+                <option value="Média">Média</option>
+                <option value="Alta">Alta</option>
+              </select>
+            </label>
+            <button type="submit" class="btn btn-primary full-line">Cadastrar talhão</button>
+          </form>
+
+          <p class="cadastro-status" id="cadastroStatus" role="alert"></p>
+          <div class="cadastro-lista" id="listaTalhoes" aria-live="polite"></div>
+        </div>
+
+        <figure class="bottom-fig">
+          <img src="imagens/sensores.jpg" alt="Placa Arduino com sensor de umidade em vaso com planta" />
+        </figure>
+      </div>
+    </section>
+
+    <section id="galeria" class="section">
+      <div class="container">
+        <p class="eyebrow">Web Development · Slideshow</p>
+        <h2>Visão visual do AgroOrbit IA</h2>
+        <p class="section-lead">Três imagens conectadas ao tema: campo, satélite e sensores IoT.</p>
+
+        <div class="slideshow-card" id="slideshowCard">
+          <img class="slide-image" id="slideImage" src="imagens/agricultor.jpg" alt="Agricultor usando tecnologia no campo" />
+          <div class="slide-info">
+            <div>
+              <h3 id="slideTitle">Produtor rural conectado</h3>
+              <p id="slideText">O sistema transforma dados técnicos em decisões simples para o campo.</p>
+            </div>
+            <div class="slide-controls">
+              <button type="button" class="slide-control" id="prevSlide">Anterior</button>
+              <div class="slide-dots" id="slideDots" aria-label="Indicadores do slideshow">
+                <button type="button" class="slide-dot active" data-slide="0" aria-label="Ir para slide 1"></button>
+                <button type="button" class="slide-dot" data-slide="1" aria-label="Ir para slide 2"></button>
+                <button type="button" class="slide-dot" data-slide="2" aria-label="Ir para slide 3"></button>
+              </div>
+              <button type="button" class="slide-control" id="nextSlide">Próxima</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="backlog" class="section section-alt">
+      <div class="container">
+        <p class="eyebrow">Backlog do Produto</p>
+        <h2>Histórias de usuário</h2>
+        <p class="section-lead">Histórias mapeadas para a Global Solution, orientadas às necessidades reais do produtor rural.</p>
+        <div class="audience-grid">
+          <article><h3>US01 · Agricultor</h3><p>Visualizar a umidade do solo para irrigar corretamente.</p></article>
+          <article><h3>US02 · Produtor</h3><p>Receber alertas de seca para evitar perdas agrícolas.</p></article>
+          <article><h3>US03 · Usuário</h3><p>Visualizar gráficos da plantação para acompanhar a produtividade.</p></article>
+          <article><h3>US04 · Agricultor</h3><p>Monitorar a temperatura ambiente para proteger a plantação do calor excessivo.</p></article>
+          <article><h3>US05 · Produtor</h3><p>Visualizar relatórios agrícolas para analisar o desempenho da lavoura.</p></article>
+          <article><h3>US06 · Usuário</h3><p>Cadastrar diferentes plantações para organizar minhas culturas.</p></article>
+          <article><h3>US07 · Agricultor</h3><p>Receber alertas de irrigação para economizar água.</p></article>
+          <article><h3>US08 · Produtor</h3><p>Acompanhar a luminosidade da plantação para entender condições ambientais.</p></article>
+          <article><h3>US09 · Usuário</h3><p>Acessar uma dashboard interativa para visualizar dados em tempo real.</p></article>
+          <article><h3>US10 · Agricultor</h3><p>Visualizar o status geral da plantação para tomar decisões rapidamente.</p></article>
+          <article><h3>US11 · Produtor</h3><p>Armazenar o histórico agrícola para comparar resultados anteriores.</p></article>
+          <article><h3>US12 · Usuário</h3><p>Visualizar indicadores de risco agrícola para prevenir prejuízos futuros.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="quiz" class="section">
+      <div class="container">
+        <p class="eyebrow">Web Development · Quiz Dinâmico</p>
+        <h2>Quiz AgroOrbit IA</h2>
+        <p class="section-lead">Responda 10 perguntas sobre agricultura inteligente, dados orbitais e sustentabilidade.</p>
+
+        <div class="webdev-panel quiz-box" id="quizBox">
+          <p class="quiz-progress" id="quizProgress">Pergunta 1 de 10</p>
+          <p class="quiz-question" id="quizQuestion">Carregando pergunta...</p>
+          <div class="quiz-options" id="quizOptions">
+            <button type="button" class="quiz-option" data-option="0"></button>
+            <button type="button" class="quiz-option" data-option="1"></button>
+            <button type="button" class="quiz-option" data-option="2"></button>
+            <button type="button" class="quiz-option" data-option="3"></button>
+          </div>
+          <p class="quiz-feedback" id="quizFeedback" role="alert"></p>
+          <button type="button" class="btn btn-primary" id="nextQuestion">Responder</button>
+          <div class="quiz-result" id="quizResult" hidden>
+            <p><strong id="quizScore">0/10</strong> acertos</p>
+            <p id="quizMessage"></p>
+            <button type="button" class="small-action" id="restartQuiz">Refazer quiz</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-brand">AgroOrbit IA · Global Solution 2026</p>
+      <p class="footer-team">Equipe: Alexandre Jardim de Souza RM 573744 · Fernando Eiji Tanaka RM 570871 · João Pedro Tavares Belon RM 571392 · Kauã Kanin Kagawa RM 571461</p>
+      <p class="footer-meta">© <span id="year"></span> AgroOrbit IA · ODS 2 · ODS 9 · ODS 10 · ODS 13</p>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
