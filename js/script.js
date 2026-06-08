@@ -338,4 +338,21 @@ function configurarQuiz() {
   if (!progresso || !pergunta || botoesOpcoes.length === 0 || !feedback || !botaoResposta || !resultado || !pontuacaoFinal || !mensagemFinal || !botaoReiniciar) {
     return;
   }
+
+    const perguntas = [
+    { pergunta: 'Qual é o principal objetivo do AgroOrbit IA?', opcoes: ['Vender satélites', 'Monitorar lavouras com dados e sensores', 'Criar redes sociais', 'Controlar drones militares'], resposta: 1 },
+    { pergunta: 'O que o NDVI ajuda a estimar?', opcoes: ['Saúde da vegetação', 'Preço de mercado', 'Quantidade de tratores', 'Velocidade do vento espacial'], resposta: 0 },
+    { pergunta: 'Qual ODS está mais ligado à agricultura sustentável?', opcoes: ['ODS 2', 'ODS 5', 'ODS 16', 'ODS 17'], resposta: 0 },
+    { pergunta: 'Qual componente pode medir umidade do solo em um protótipo?', opcoes: ['LED RGB', 'Sensor de umidade do solo', 'Buzzer', 'Resistor fixo isolado'], resposta: 1 },
+    { pergunta: 'Qual combinação de dados indica maior risco de estresse hídrico na lavoura?', opcoes: ['Umidade baixa, temperatura alta e NDVI baixo', 'Solo úmido, temperatura ideal e NDVI alto', 'Alta luminosidade isolada', 'Nome da cultura cadastrado corretamente'], resposta: 0 },
+    { pergunta: 'Qual situação representa risco agrícola?', opcoes: ['Alta umidade e temperatura ideal', 'Baixa umidade e temperatura elevada', 'NDVI alto e solo úmido', 'Luminosidade estável'], resposta: 1 },
+    { pergunta: 'O que sensores IoT fazem no campo?', opcoes: ['Coletam dados ambientais', 'Geram chuva artificial', 'Lançam foguetes', 'Eliminam a necessidade de análise'], resposta: 0 },
+    { pergunta: 'Qual tecnologia espacial se conecta ao projeto?', opcoes: ['Sensoriamento remoto', 'Mineração lunar obrigatória', 'Turismo espacial', 'Propulsão nuclear'], resposta: 0 },
+    { pergunta: 'Qual dado o usuário pode inserir no simulador?', opcoes: ['Temperatura, umidade e NDVI', 'Senha de satélite militar', 'Órbita real de lançamento', 'Código do foguete'], resposta: 0 },
+    { pergunta: 'Qual benefício social o projeto busca?', opcoes: ['Democratizar agricultura de precisão', 'Aumentar desperdício de água', 'Dificultar acesso à tecnologia', 'Eliminar produtores pequenos'], resposta: 0 }
+  ];
+
+  let perguntaAtual = 0;
+  let pontuacao = 0;
+  let opcaoSelecionada = null;
 }
