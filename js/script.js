@@ -161,3 +161,165 @@ function configurarSlideshow() {
   renderizarSlide();
   reiniciarTemporizador();
 }
+
+function calcularRiscoAgricola(temperatura, umidadeSolo, ndvi) {
+  const estresseTermico = limitarValor((temperatura - 20) * 3, 0, 100);
+  const estresseHidrico = limitarValor(100 - umidadeSolo, 0, 100);
+  const estresseVegetacao = limitarValor((1 - ndvi) * 100, 0, 100);
+  const score = estresseTermico * 0.30 + estresseHidrico * 0.40 + estresseVegetacao * 0.30;
+
+  return {
+    score: limitarValor(score, 0, 100),
+    estresseTermico,
+    estresseHidrico,
+    estresseVegetacao
+  };
+}
+
+function classificarRisco(score) {
+  if (score < 35) {
+    return {
+      classe: 'Saudável',
+      css: 'saudavel',
+      mensagem: 'A lavoura está em condição estável. Continue monitorando.'
+    };
+  } else if (score < 70) {
+    return {
+      classe: 'Atenção',
+      css: 'atencao',
+      mensagem: 'A lavoura apresenta sinais de estresse. Verifique irrigação e temperatura.'
+    };
+  }
+
+  return {
+    classe: 'Crítico',
+    css: 'critico',
+    mensagem: 'Risco alto. Recomenda-se ação imediata no manejo da plantação.'
+  };
+}
+
+function atualizarIndicadoresHero(ndvi, umidade, risco) {
+  const statNdvi = $('#statNdvi');
+  const statUmi = $('#statUmi');
+  const statRisco = $('#statRisco');
+
+  if (statNdvi) {
+    statNdvi.textContent = Number(ndvi).toFixed(2);
+  }
+
+  if (statUmi) {
+    statUmi.textContent = `${Math.round(umidade)}%`;
+  }
+
+  if (statRisco) {
+    statRisco.textContent = risco;
+  }
+}
+
+function configurarSimulador() {
+  const formulario = $('#simForm');
+
+  if (!formulario) {
+    return;
+  }
+
+  formulario.addEventListener('submit', (evento) => {
+    evento.preventDefault();
+
+    const campoTemperatura = $('#inpTemp');
+    const campoUmidade = $('#inpUmi');
+    const campoNdvi = $('#inpNdvi');
+    const erro = $('#formError');
+
+    if (campoTemperatura.value === '' || campoUmidade.value === '' || campoNdvi.value === '') {
+      erro.textContent = 'Preencha todos os campos do simulador.';
+      return;
+    }
+
+    const temperatura = Number(campoTemperatura.value);
+    const umidade = Number(campoUmidade.value);
+    const ndvi = Number(campoNdvi.value);
+
+    if (temperatura < 0 || temperatura > 50) {
+      erro.textContent = 'Temperatura inválida. Use valores entre 0 e 50 °C.';
+      return;
+    } else if (umidade < 0 || umidade > 100) {
+      erro.textContent = 'Umidade inválida. Use valores entre 0 e 100%.';
+      return;
+    } else if (ndvi < 0 || ndvi > 1) {
+      erro.textContent = 'NDVI inválido. Use valores entre 0 e 1.';
+      return;
+    }
+
+    erro.textContent = '';
+
+    const resultado = calcularRiscoAgricola(temperatura, umidade, ndvi);
+    const classificacao = classificarRisco(resultado.score);
+
+    $('#resScore').textContent = formatarPontuacao(resultado.score);
+    $('#resTemp').textContent = `${formatarPontuacao(resultado.estresseTermico)}%`;
+    $('#resUmi').textContent = `${formatarPontuacao(resultado.estresseHidrico)}%`;
+    $('#resVeg').textContent = `${formatarPontuacao(resultado.estresseVegetacao)}%`;
+
+    const saidaClasse = $('#resClass');
+    saidaClasse.classList.remove('saudavel', 'atencao', 'critico');
+    saidaClasse.classList.add(classificacao.css);
+    saidaClasse.textContent = `${classificacao.classe} — ${classificacao.mensagem}`;
+
+    atualizarIndicadoresHero(ndvi, umidade, classificacao.classe);
+  });
+}
+
+function configurarCadastroTalhao() {
+  const formulario = $('#formTalhao');
+  const lista = $('#listaTalhoes');
+  const status = $('#cadastroStatus');
+
+  if (!formulario || !lista || !status) {
+    return;
+  }
+
+  const talhoes = [];
+
+  function criarParagrafo(texto) {
+    const paragrafo = document.createElement('p');
+    paragrafo.textContent = texto;
+    return paragrafo;
+  }
+
+  function renderizarTalhoes() {
+    lista.replaceChildren();
+
+    for (let i = 0; i < talhoes.length; i += 1) {
+      const talhao = talhoes[i];
+      const card = document.createElement('article');
+      const titulo = document.createElement('strong');
+
+      card.classList.add('talhao-card');
+      titulo.textContent = `${i + 1}. ${talhao.nome}`;
+
+      card.appendChild(titulo);
+      card.appendChild(criarParagrafo(`Cultura: ${talhao.cultura}`));
+      card.appendChild(criarParagrafo(`Prioridade: ${talhao.prioridade}`));
+      lista.appendChild(card);
+    }
+  }
+
+  formulario.addEventListener('submit', (evento) => {
+    evento.preventDefault();
+
+    const nome = $('#nomeTalhao').value.trim();
+    const cultura = $('#culturaTalhao').value.trim();
+    const prioridade = $('#prioridadeTalhao').value;
+
+    if (nome === '' || cultura === '' || prioridade === '') {
+      definirFeedback(status, 'Preencha todos os campos antes de cadastrar o talhão.', 'erro');
+      return;
+    }
+
+    talhoes.push({ nome, cultura, prioridade });
+    definirFeedback(status, `Talhão "${nome}" cadastrado com sucesso.`, 'ok');
+    formulario.reset();
+    renderizarTalhoes();
+  });
+}
