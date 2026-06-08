@@ -323,3 +323,19 @@ function configurarCadastroTalhao() {
     renderizarTalhoes();
   });
 }
+
+function configurarQuiz() {
+  const progresso = $('#quizProgress');
+  const pergunta = $('#quizQuestion');
+  const botoesOpcoes = $$('.quiz-option');
+  const feedback = $('#quizFeedback');
+  const botaoResposta = $('#nextQuestion');
+  const resultado = $('#quizResult');
+  const pontuacaoFinal = $('#quizScore');
+  const mensagemFinal = $('#quizMessage');
+  const botaoReiniciar = $('#restartQuiz');
+
+  if (!progresso || !pergunta || botoesOpcoes.length === 0 || !feedback || !botaoResposta || !resultado || !pontuacaoFinal || !mensagemFinal || !botaoReiniciar) {
+    return;
+  }
+}
