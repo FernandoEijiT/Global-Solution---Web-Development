@@ -13,8 +13,7 @@ Sugestões de código em JavaScript puro para implementar as funcionalidades sol
 
 O que foi alterado ou rejeitado e motivo
 
-Foram realizados ajustes manuais pelos integrantes para adaptar o código à estrutura existente do projeto e manter a identidade visual definida pela equipe
-
+Foram realizados ajustes manuais pelos integrantes para adaptar o código à estrutura existente do projeto e manter a identidade visual definida pela equipe.
 ## Interação 2
 
 ### O que foi solicitado para a IA
