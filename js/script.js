@@ -269,3 +269,57 @@ function configurarSimulador() {
     atualizarIndicadoresHero(ndvi, umidade, classificacao.classe);
   });
 }
+
+function configurarCadastroTalhao() {
+  const formulario = $('#formTalhao');
+  const lista = $('#listaTalhoes');
+  const status = $('#cadastroStatus');
+
+  if (!formulario || !lista || !status) {
+    return;
+  }
+
+  const talhoes = [];
+
+  function criarParagrafo(texto) {
+    const paragrafo = document.createElement('p');
+    paragrafo.textContent = texto;
+    return paragrafo;
+  }
+
+  function renderizarTalhoes() {
+    lista.replaceChildren();
+
+    for (let i = 0; i < talhoes.length; i += 1) {
+      const talhao = talhoes[i];
+      const card = document.createElement('article');
+      const titulo = document.createElement('strong');
+
+      card.classList.add('talhao-card');
+      titulo.textContent = `${i + 1}. ${talhao.nome}`;
+
+      card.appendChild(titulo);
+      card.appendChild(criarParagrafo(`Cultura: ${talhao.cultura}`));
+      card.appendChild(criarParagrafo(`Prioridade: ${talhao.prioridade}`));
+      lista.appendChild(card);
+    }
+  }
+
+  formulario.addEventListener('submit', (evento) => {
+    evento.preventDefault();
+
+    const nome = $('#nomeTalhao').value.trim();
+    const cultura = $('#culturaTalhao').value.trim();
+    const prioridade = $('#prioridadeTalhao').value;
+
+    if (nome === '' || cultura === '' || prioridade === '') {
+      definirFeedback(status, 'Preencha todos os campos antes de cadastrar o talhão.', 'erro');
+      return;
+    }
+
+    talhoes.push({ nome, cultura, prioridade });
+    definirFeedback(status, `Talhão "${nome}" cadastrado com sucesso.`, 'ok');
+    formulario.reset();
+    renderizarTalhoes();
+  });
+}
