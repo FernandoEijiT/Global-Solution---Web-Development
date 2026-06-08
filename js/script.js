@@ -46,3 +46,32 @@ function configurarNavegacao() {
     });
   });
 }
+function atualizarAnoRodape() {
+  const ano = $('#year');
+
+  if (ano) {
+    ano.textContent = new Date().getFullYear();
+  }
+}
+
+function configurarTemas() {
+  const botoesTema = $$('.theme-btn');
+
+  if (botoesTema.length === 0) {
+    return;
+  }
+
+  document.body.classList.add('theme-orbital');
+
+  botoesTema.forEach((botao) => {
+    botao.addEventListener('click', () => {
+      const temaSelecionado = botao.dataset.theme;
+
+      document.body.classList.remove('theme-orbital', 'theme-eco', 'theme-solar');
+      document.body.classList.add(temaSelecionado);
+
+      botoesTema.forEach((item) => item.classList.remove('active'));
+      botao.classList.add('active');
+    });
+  });
+}
