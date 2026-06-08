@@ -116,3 +116,48 @@ function configurarSlideshow() {
       dot.classList.toggle('active', indice === indiceAtual);
     });
   }
+  function renderizarSlide() {
+    const slide = slides[indiceAtual];
+    imagem.src = slide.imagem;
+    imagem.alt = slide.alt;
+    titulo.textContent = slide.titulo;
+    texto.textContent = slide.texto;
+    atualizarDots();
+  }
+
+  function proximoSlide() {
+    indiceAtual = (indiceAtual + 1) % slides.length;
+    renderizarSlide();
+  }
+
+  function slideAnterior() {
+    indiceAtual = (indiceAtual - 1 + slides.length) % slides.length;
+    renderizarSlide();
+  }
+
+  function reiniciarTemporizador() {
+    clearInterval(temporizador);
+    temporizador = setInterval(proximoSlide, 4500);
+  }
+
+  botaoProximo.addEventListener('click', () => {
+    proximoSlide();
+    reiniciarTemporizador();
+  });
+
+  botaoAnterior.addEventListener('click', () => {
+    slideAnterior();
+    reiniciarTemporizador();
+  });
+
+  dots.forEach((dot) => {
+    dot.addEventListener('click', () => {
+      indiceAtual = Number(dot.dataset.slide);
+      renderizarSlide();
+      reiniciarTemporizador();
+    });
+  });
+
+  renderizarSlide();
+  reiniciarTemporizador();
+}
