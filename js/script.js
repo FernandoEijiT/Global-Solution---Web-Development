@@ -323,3 +323,139 @@ function configurarCadastroTalhao() {
     renderizarTalhoes();
   });
 }
+
+function configurarQuiz() {
+  const progresso = $('#quizProgress');
+  const pergunta = $('#quizQuestion');
+  const botoesOpcoes = $$('.quiz-option');
+  const feedback = $('#quizFeedback');
+  const botaoResposta = $('#nextQuestion');
+  const resultado = $('#quizResult');
+  const pontuacaoFinal = $('#quizScore');
+  const mensagemFinal = $('#quizMessage');
+  const botaoReiniciar = $('#restartQuiz');
+
+  if (!progresso || !pergunta || botoesOpcoes.length === 0 || !feedback || !botaoResposta || !resultado || !pontuacaoFinal || !mensagemFinal || !botaoReiniciar) {
+    return;
+  }
+
+    const perguntas = [
+    { pergunta: 'Qual é o principal objetivo do AgroOrbit IA?', opcoes: ['Vender satélites', 'Monitorar lavouras com dados e sensores', 'Criar redes sociais', 'Controlar drones militares'], resposta: 1 },
+    { pergunta: 'O que o NDVI ajuda a estimar?', opcoes: ['Saúde da vegetação', 'Preço de mercado', 'Quantidade de tratores', 'Velocidade do vento espacial'], resposta: 0 },
+    { pergunta: 'Qual ODS está mais ligado à agricultura sustentável?', opcoes: ['ODS 2', 'ODS 5', 'ODS 16', 'ODS 17'], resposta: 0 },
+    { pergunta: 'Qual componente pode medir umidade do solo em um protótipo?', opcoes: ['LED RGB', 'Sensor de umidade do solo', 'Buzzer', 'Resistor fixo isolado'], resposta: 1 },
+    { pergunta: 'Qual combinação de dados indica maior risco de estresse hídrico na lavoura?', opcoes: ['Umidade baixa, temperatura alta e NDVI baixo', 'Solo úmido, temperatura ideal e NDVI alto', 'Alta luminosidade isolada', 'Nome da cultura cadastrado corretamente'], resposta: 0 },
+    { pergunta: 'Qual situação representa risco agrícola?', opcoes: ['Alta umidade e temperatura ideal', 'Baixa umidade e temperatura elevada', 'NDVI alto e solo úmido', 'Luminosidade estável'], resposta: 1 },
+    { pergunta: 'O que sensores IoT fazem no campo?', opcoes: ['Coletam dados ambientais', 'Geram chuva artificial', 'Lançam foguetes', 'Eliminam a necessidade de análise'], resposta: 0 },
+    { pergunta: 'Qual tecnologia espacial se conecta ao projeto?', opcoes: ['Sensoriamento remoto', 'Mineração lunar obrigatória', 'Turismo espacial', 'Propulsão nuclear'], resposta: 0 },
+    { pergunta: 'Qual dado o usuário pode inserir no simulador?', opcoes: ['Temperatura, umidade e NDVI', 'Senha de satélite militar', 'Órbita real de lançamento', 'Código do foguete'], resposta: 0 },
+    { pergunta: 'Qual benefício social o projeto busca?', opcoes: ['Democratizar agricultura de precisão', 'Aumentar desperdício de água', 'Dificultar acesso à tecnologia', 'Eliminar produtores pequenos'], resposta: 0 }
+  ];
+
+  let perguntaAtual = 0;
+  let pontuacao = 0;
+  let opcaoSelecionada = null;
+
+    function limparSelecao() {
+    botoesOpcoes.forEach((botao) => botao.classList.remove('selected'));
+  }
+
+  function renderizarPergunta() {
+    const item = perguntas[perguntaAtual];
+    opcaoSelecionada = null;
+
+    progresso.textContent = `Pergunta ${perguntaAtual + 1} de ${perguntas.length}`;
+    pergunta.textContent = item.pergunta;
+    definirFeedback(feedback, '', '');
+    botaoResposta.textContent = perguntaAtual === perguntas.length - 1 ? 'Finalizar quiz' : 'Responder';
+    botaoResposta.hidden = false;
+    resultado.hidden = true;
+    limparSelecao();
+
+    botoesOpcoes.forEach((botao, indice) => {
+      botao.textContent = item.opcoes[indice];
+      botao.hidden = false;
+    });
+  }
+
+  function finalizarQuiz() {
+    progresso.textContent = 'Quiz concluído';
+    pergunta.textContent = 'Resultado final do quiz';
+    feedback.textContent = '';
+    botaoResposta.hidden = true;
+
+    botoesOpcoes.forEach((botao) => {
+      botao.hidden = true;
+    });
+
+    let nivel;
+
+    if (pontuacao <= 4) {
+      nivel = 'Conhecimento inicial. Revise os conceitos de sensores, satélite e ODS.';
+    } else if (pontuacao <= 7) {
+      nivel = 'Bom resultado. Você entende a proposta e pode aprofundar a parte técnica.';
+    } else {
+      nivel = 'Excelente. Você domina bem a conexão entre agricultura, espaço e tecnologia.';
+    }
+
+    pontuacaoFinal.textContent = `${pontuacao}/${perguntas.length}`;
+    mensagemFinal.textContent = nivel;
+    resultado.hidden = false;
+  }
+
+    botoesOpcoes.forEach((botao) => {
+    botao.addEventListener('click', () => {
+      opcaoSelecionada = Number(botao.dataset.option);
+      limparSelecao();
+      botao.classList.add('selected');
+    });
+  });
+
+  botaoResposta.addEventListener('click', () => {
+    if (opcaoSelecionada === null) {
+      definirFeedback(feedback, 'Selecione uma alternativa antes de responder.', 'erro');
+      return;
+    }
+
+    if (opcaoSelecionada === perguntas[perguntaAtual].resposta) {
+      pontuacao += 1;
+      definirFeedback(feedback, 'Resposta correta.', 'ok');
+    } else {
+      definirFeedback(feedback, 'Resposta incorreta.', 'erro');
+    }
+
+    setTimeout(() => {
+      perguntaAtual += 1;
+
+      if (perguntaAtual < perguntas.length) {
+        renderizarPergunta();
+      } else {
+        finalizarQuiz();
+      }
+    }, 650);
+  });
+
+  botaoReiniciar.addEventListener('click', () => {
+    perguntaAtual = 0;
+    pontuacao = 0;
+    renderizarPergunta();
+  });
+
+  renderizarPergunta();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  atualizarAnoRodape();
+  configurarNavegacao();
+  configurarTemas();
+  configurarSlideshow();
+  configurarSimulador();
+  configurarCadastroTalhao();
+  configurarQuiz();
+
+  const formulario = $('#simForm');
+
+  if (formulario) {
+    formulario.dispatchEvent(new Event('submit'));
+  }
+});
