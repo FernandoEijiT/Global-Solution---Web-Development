@@ -355,4 +355,51 @@ function configurarQuiz() {
   let perguntaAtual = 0;
   let pontuacao = 0;
   let opcaoSelecionada = null;
+
+    function limparSelecao() {
+    botoesOpcoes.forEach((botao) => botao.classList.remove('selected'));
+  }
+
+  function renderizarPergunta() {
+    const item = perguntas[perguntaAtual];
+    opcaoSelecionada = null;
+
+    progresso.textContent = `Pergunta ${perguntaAtual + 1} de ${perguntas.length}`;
+    pergunta.textContent = item.pergunta;
+    definirFeedback(feedback, '', '');
+    botaoResposta.textContent = perguntaAtual === perguntas.length - 1 ? 'Finalizar quiz' : 'Responder';
+    botaoResposta.hidden = false;
+    resultado.hidden = true;
+    limparSelecao();
+
+    botoesOpcoes.forEach((botao, indice) => {
+      botao.textContent = item.opcoes[indice];
+      botao.hidden = false;
+    });
+  }
+
+  function finalizarQuiz() {
+    progresso.textContent = 'Quiz concluído';
+    pergunta.textContent = 'Resultado final do quiz';
+    feedback.textContent = '';
+    botaoResposta.hidden = true;
+
+    botoesOpcoes.forEach((botao) => {
+      botao.hidden = true;
+    });
+
+    let nivel;
+
+    if (pontuacao <= 4) {
+      nivel = 'Conhecimento inicial. Revise os conceitos de sensores, satélite e ODS.';
+    } else if (pontuacao <= 7) {
+      nivel = 'Bom resultado. Você entende a proposta e pode aprofundar a parte técnica.';
+    } else {
+      nivel = 'Excelente. Você domina bem a conexão entre agricultura, espaço e tecnologia.';
+    }
+
+    pontuacaoFinal.textContent = `${pontuacao}/${perguntas.length}`;
+    mensagemFinal.textContent = nivel;
+    resultado.hidden = false;
+  }
 }
